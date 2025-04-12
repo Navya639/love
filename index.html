@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For You My Love 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #ffc0cb, #ff5e78);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .section {
+      display: none;
+      height: 100vh;
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px #e91e63;
+    }
+
+    p {
+      font-size: 1.5rem;
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+
+    button {
+      background: #fff;
+      color: #e91e63;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 2rem;
+    }
+
+    button:hover {
+      background: #e91e63;
+      color: white;
+    }
+
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    img {
+      width: 280px;
+      height: auto;
+      border-radius: 20px;
+      margin-top: 20px;
+      border: 5px solid white;
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts" id="hearts-container"></div>
+
+  <!-- Section 1 -->
+  <div class="section active" id="section1">
+    <h1>HEY BABY 💗</h1>
+    <p>I made something sweet for you💕💕😘</p>
+    <button onclick="nextSection()">Next</button>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section" id="section2">
+    <h1>I LOVE YOU</h1>
+    <p>Thank you for never giving up on me🥹🥹 I will always love you more and more 💞</p>
+    <button onclick="nextSection()">Next</button>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section" id="section3">
+    <h1>I Love You Meri Jaan 💖</h1>
+    <p>You mean the world to me. Forever and always, it's you and will only be you  ❤️</p>
+    <img src="us.jpg" alt="IT'S US BABY"/>
+  </div>
+
+  <audio autoplay loop>
+    <source src="die-with-a-smile.mp4" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    let current = 1;
+
+    function nextSection() {
+      document.getElementById('section' + current).classList.remove('active');
+      current++;
+      const next = document.getElementById('section' + current);
+      if (next) next.classList.add('active');
+    }
+
+    // Floating red hearts
+    const heartContainer = document.getElementById("hearts-container");
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      heart.style.opacity = Math.random();
+      heartContainer.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
